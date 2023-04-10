@@ -1,28 +1,34 @@
+import Link from "next/link";
+
 const index = ({ services }) => {
   return (
-    <div className="container mx-10" >
-     <h2 className="card-title">Total Services:{services.length}</h2>
-     <div className="flex justify-between">
+    <div className="container mx-10">
+      <h2 className="card-title">Total Services:{services.length}</h2>
 
-        {
-            services.map(
-            service => 
-            <div className="card my-10 w-96 bg-base-100 shadow-xl">
+      <Link href={"/"}>
+          <button className="btn btn-success"> Back to Home</button>
+        </Link>
+
+      <div className="flex justify-between">
+        {services.map((service) => (
+          <div className="card my-10 w-96 bg-base-100 shadow-xl">
             <figure>
-                <img width={400} height={400} src={service.image} alt="Shoes" />
+              <img width={400} height={400} src={service.image} alt="Shoes" />
             </figure>
             <div className="card-body">
-            <h2 className="card-title">{service.title}</h2>
+              <h2 className="card-title">{service.title}</h2>
               <p>{service.description}</p>
               <div className="card-actions justify-end">
+                <Link href={`/services/${service.id}`} >
                 <button className="btn btn-primary"> read more... </button>
+                </Link>
               </div>
             </div>
           </div>
-          )
-        }
-
+        ))}
+        
       </div>
+
     </div>
   );
 };
