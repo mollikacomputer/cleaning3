@@ -12,12 +12,9 @@ const index = ({ services }) => {
       <div className="flex justify-between">
         {services.map((service) => (
           <div className="card my-10 w-96 bg-base-100 shadow-xl">
-            <figure>
-              <img width={400} height={400} src={service.image} alt="Shoes" />
-            </figure>
             <div className="card-body">
               <h2 className="card-title">{service.title}</h2>
-              <p>{service.description}</p>
+              <p>{service.body}</p>
               <div className="card-actions justify-end">
                 <Link href={`/services/${service.id}`} >
                 <button className="btn btn-primary"> read more... </button>
@@ -34,7 +31,7 @@ const index = ({ services }) => {
 };
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:3000/api/services");
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts/?_limit=3");
   const data = await res.json();
   return {
     props: {

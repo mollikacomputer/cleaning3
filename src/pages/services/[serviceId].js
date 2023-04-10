@@ -11,7 +11,7 @@ const ServiceDetails = ({ service }) => {
         <div>
           <h1 className="text-5xl font-bold">{service.title}</h1>
           <p className="py-6">
-            {service.description}
+            {service.body}
           </p>
           <Link href={'/services'}>
           <button className="btn btn-primary"> Back to Post  </button>
@@ -25,7 +25,7 @@ const ServiceDetails = ({ service }) => {
 export const getStaticProps = async (context) => {
   const { params } = context;
   const res = await fetch(
-    `http://localhost:3000/api/services/${params?.serviceId}`
+    `https://jsonplaceholder.typicode.com/posts/${params?.serviceId}`
   );
   const data = await res.json();
   return {
@@ -37,9 +37,9 @@ export const getStaticProps = async (context) => {
 
 // get service id
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:3000/api/services/");
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts/");
   const services = await res.json();
-  const paths = services.map((service) => {
+  const paths = services.map((service) => { 
     return {
       params: {
         serviceId: `${service.id}`,
